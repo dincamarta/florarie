@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Comenzile mele</title></head>
+<body>
+
+<h1>Comenzile mele</h1>
+<p><a th:href="@{/flowers}">Catalog</a></p>
+
+<table border="1" cellpadding="6">
+    <thead>
+    <tr><th>ID</th><th>Data</th><th>Status</th><th>Total</th><th></th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="o : ${orders}">
+        <td th:text="${o.id}">1</td>
+        <td th:text="${o.createdAt}"></td>
+        <td th:text="${o.status}"></td>
+        <td th:text="${o.total}"></td>
+        <td><a th:href="@{/orders/{id}(id=${o.id})}">Detalii</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

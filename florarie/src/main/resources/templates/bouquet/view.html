@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buchetul meu</title>
+</head>
+<body>
+
+<h1>Buchetul meu</h1>
+
+<p>
+    <a th:href="@{/flowers}">Înapoi la catalog</a> |
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/checkout}">Finalizează comanda</a>
+
+</p>
+
+<table border="1" cellpadding="6">
+    <thead>
+    <tr>
+        <th>Floare</th>
+        <th>Preț</th>
+        <th>Cantitate</th>
+        <th>Total linie</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="it : ${items}">
+        <td th:text="${it.name}">Trandafir</td>
+        <td th:text="${it.price}">10</td>
+
+        <td>
+            <form th:action="@{/bouquet/update}" method="post" style="display:inline;">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <input type="hidden" name="flowerId" th:value="${it.flowerId}">
+                <input type="number" name="quantity" min="0" th:value="${it.quantity}">
+                <button type="submit">Update</button>
+            </form>
+        </td>
+
+        <td th:text="${it.lineTotal}">10</td>
+
+        <td>
+            <a th:href="@{/bouquet/remove/{id}(id=${it.flowerId})}">Remove</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Total: <span th:text="${total}">0</span></h3>
+
+</body>
+</html>

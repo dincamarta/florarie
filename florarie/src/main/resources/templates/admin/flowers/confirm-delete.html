@@ -15,9 +15,11 @@
 </p>
 
 <form th:action="@{/admin/flowers/{id}/delete(id=${flower.id})}" method="post">
-  <button type="submit">Da, șterge</button>
-  <a th:href="@{/admin/flowers}">Nu, renunță</a>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <button type="submit">Da, șterge</button>
+    <a th:href="@{/admin/flowers}">Nu, renunță</a>
 </form>
+
 
 </body>
 </html>

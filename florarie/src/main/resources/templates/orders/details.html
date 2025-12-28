@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Detalii comandă</title></head>
+<body>
+
+<h1>Comandă #<span th:text="${order.id}"></span></h1>
+
+<p>Status: <b th:text="${order.status}"></b></p>
+<p>Total: <b th:text="${order.total}"></b></p>
+<p>Adresă: <span th:text="${order.deliveryAddress}"></span></p>
+<p>Telefon: <span th:text="${order.phone}"></span></p>
+
+<h3>Produse</h3>
+<table border="1" cellpadding="6">
+    <thead>
+    <tr><th>Floare</th><th>Preț</th><th>Cant.</th><th>Total</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="it : ${order.items}">
+        <td th:text="${it.flowerName}"></td>
+        <td th:text="${it.unitPrice}"></td>
+        <td th:text="${it.quantity}"></td>
+        <td th:text="${it.lineTotal}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<p><a th:href="@{/orders}">Înapoi</a></p>
+
+</body>
+</html>
