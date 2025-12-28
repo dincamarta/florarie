@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmă ștergerea</title>
+</head>
+<body>
+
+<h1>Confirmă ștergerea</h1>
+
+<p>
+  Ești sigur că vrei să ștergi floarea:
+  <b th:text="${flower.name}">Nume</b>
+  (ID: <span th:text="${flower.id}">0</span>)?
+</p>
+
+<form th:action="@{/admin/flowers/{id}/delete(id=${flower.id})}" method="post">
+  <button type="submit">Da, șterge</button>
+  <a th:href="@{/admin/flowers}">Nu, renunță</a>
+</form>
+
+</body>
+</html>
