@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin - Flori</title>
+  <link rel="stylesheet" th:href="@{/css/common.css}">
+  <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
+<div class="admin-container">
+<div class="admin-header">
 <h1>Flori (Admin)</h1>
 
-<p>
-  <a th:href="@{/}">Home</a> |
-  <a th:href="@{/admin/flowers/new}">Adaugă floare</a>
+<div class="admin-nav">
+  <a th:href="@{/}">Home</a>
+  <a class="add-new-btn" th:href="@{/admin/flowers/new}">Adaugă floare</a>
+</div>
+</div>
 
-
-</p>
-
-<table border="1" cellpadding="6">
+<div class="admin-table">
+<table>
   <thead>
   <tr>
     <th>ID</th><th>Nume</th><th>Culoare</th><th>Preț</th><th>Stoc</th><th>Disponibil</th><th>Acțiuni</th>
@@ -28,13 +32,14 @@
     <td th:text="${f.price}">10</td>
     <td th:text="${f.stock}">20</td>
     <td th:text="${f.available}">true</td>
-    <td>
-      <a th:href="@{/admin/flowers/{id}/edit(id=${f.id})}">Edit</a> |
-      <a th:href="@{/admin/flowers/{id}/delete(id=${f.id})}">Delete</a>
+    <td class="action-links">
+      <a class="edit-btn" th:href="@{/admin/flowers/{id}/edit(id=${f.id})}">Edit</a>
+      <a class="delete-btn" th:href="@{/admin/flowers/{id}/delete(id=${f.id})}">Delete</a>
     </td>
   </tr>
   </tbody>
 </table>
-
+</div>
+</div>
 </body>
 </html>

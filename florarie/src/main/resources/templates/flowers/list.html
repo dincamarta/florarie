@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Catalog flori</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/flowers.css}">
 </head>
 <body>
-
+<div class="flowers-container">
+<div class="flowers-header">
 <h1>Catalog flori</h1>
 
-<p>
+<p class="nav-links">
     <a th:href="@{/}">Home</a> |
     <a th:href="@{/bouquet}">Buchetul meu</a>
 </p>
+</div>
 
-<table border="1" cellpadding="6">
+<div class="flowers-table">
+<table>
     <thead>
     <tr>
         <th>Nume</th>
@@ -35,11 +40,12 @@
 
         <td>
             <!-- deocamdată doar link, îl implementăm imediat -->
-            <a th:href="@{/bouquet/add/{id}(id=${f.id})}">Adaugă în buchet</a>
+            <a class="add-to-bouquet-btn" th:href="@{/bouquet/add/{id}(id=${f.id})}">Adaugă în buchet</a>
         </td>
     </tr>
     </tbody>
 </table>
-
+</div>
+</div>
 </body>
 </html>

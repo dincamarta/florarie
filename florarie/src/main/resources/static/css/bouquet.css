@@ -1,0 +1,229 @@
+/* Stiluri pentru buchet */
+.bouquet-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.bouquet-header {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.bouquet-header h1 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 15px;
+}
+
+.bouquet-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.checkout-btn {
+    background: #28a745;
+}
+
+.checkout-btn:hover {
+    background: #218838;
+}
+
+.quantity-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-form input[type="number"] {
+    width: 80px;
+    padding: 5px;
+}
+
+.quantity-form button {
+    padding: 5px 15px;
+    font-size: 14px;
+}
+
+.remove-btn {
+    background: #dc3545;
+    padding: 5px 15px;
+    font-size: 14px;
+}
+
+.remove-btn:hover {
+    background: #c82333;
+}
+
+.total-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: right;
+}
+
+.total-section h3 {
+    color: #667eea;
+    text-shadow: none;
+    font-size: 1.8em;
+}
+
+.total-section span {
+    color: #28a745;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.error-message {
+    background: #f8d7da;
+    border: 2px solid #dc3545;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Stiluri pentru confirmare ștergere */
+.confirm-remove-box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    max-width: 500px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.confirm-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.confirm-remove-box h2 {
+    color: #dc3545;
+    text-shadow: none;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.confirm-question {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.item-details-box {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 2px solid #e9ecef;
+}
+
+.item-details-box h3 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row .label {
+    font-weight: 600;
+    color: #666;
+}
+
+.detail-row .value {
+    font-weight: bold;
+    color: #333;
+}
+
+.total-row {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 2px solid #667eea !important;
+    font-size: 1.2em;
+}
+
+.total-row .label {
+    color: #667eea;
+}
+
+.total-row .value {
+    color: #28a745;
+    font-size: 1.3em;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.confirm-actions .cancel-btn,
+.confirm-actions .confirm-btn {
+    flex: 1;
+    max-width: 200px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.confirm-actions .cancel-btn {
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    border: none;
+}
+
+.confirm-actions .cancel-btn:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.confirm-actions .confirm-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+}
+
+.confirm-actions .confirm-btn:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.confirm-actions span {
+    font-size: 1.2em;
+}

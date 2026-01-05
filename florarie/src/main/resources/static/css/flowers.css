@@ -1,0 +1,67 @@
+/* Stiluri pentru catalog flori */
+.flowers-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.flowers-header {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.flowers-header h1 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 15px;
+}
+
+.flowers-table {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.add-to-bouquet-btn {
+    background: #28a745;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.add-to-bouquet-btn:hover {
+    background: #218838;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.price-cell {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.stock-low {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.available-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.available-badge.yes {
+    background: #d4edda;
+    color: #155724;
+}
+
+.available-badge.no {
+    background: #f8d7da;
+    color: #721c24;
+}

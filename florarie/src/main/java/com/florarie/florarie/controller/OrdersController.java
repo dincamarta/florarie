@@ -40,4 +40,30 @@ public class OrdersController {
         model.addAttribute("order", order);
         return "orders/details";
     }
+
+    @GetMapping("/{id}/delete")
+    public String confirmDelete(@PathVariable Long id, Authentication auth, Model model) {
+        AppUser user = userRepository.findByEmail(auth.getName()).orElseThrow();
+        CustomerOrder order = orderRepository.findById(id).orElseThrow();
+
+        if (order.getUser() == null || !order.getUser().getId().equals(user.getId())) {
+            return "redirect:/orders";
+        }
+
+        model.addAttribute("order", order);
+        return "orders/confirm-delete";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteOrder(@PathVariable Long id, Authentication auth) {
+        AppUser user = userRepository.findByEmail(auth.getName()).orElseThrow();
+        CustomerOrder order = orderRepository.findById(id).orElseThrow();
+
+        if (order.getUser() == null || !order.getUser().getId().equals(user.getId())) {
+            return "redirect:/orders";
+        }
+
+        orderRepository.delete(order);
+        return "redirect:/orders";
+    }
 }

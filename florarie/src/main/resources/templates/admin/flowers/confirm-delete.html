@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Confirmă ștergerea</title>
+  <link rel="stylesheet" th:href="@{/css/common.css}">
+  <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
-
+<div class="confirm-delete-container">
 <h1>Confirmă ștergerea</h1>
 
 <p>
@@ -14,12 +16,13 @@
   (ID: <span th:text="${flower.id}">0</span>)?
 </p>
 
-<form th:action="@{/admin/flowers/{id}/delete(id=${flower.id})}" method="post">
+<div class="confirm-delete-actions">
+<form th:action="@{/admin/flowers/{id}/delete(id=${flower.id})}" method="post" style="display:inline;">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-    <button type="submit">Da, șterge</button>
-    <a th:href="@{/admin/flowers}">Nu, renunță</a>
+    <button type="submit" class="confirm-btn">Da, șterge</button>
 </form>
-
-
+    <a class="cancel-btn" th:href="@{/admin/flowers}">Nu, renunță</a>
+</div>
+</div>
 </body>
 </html>

@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Detalii comandă</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Detalii comandă</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/orders.css}">
+</head>
 <body>
-
+<div class="order-details-container">
+<div class="order-info">
 <h1>Comandă #<span th:text="${order.id}"></span></h1>
 
 <p>
     <b>Status:</b>
-    <span th:switch="${order.status}">
-    <span th:case="'NEW'">Nouă</span>
-    <span th:case="'PRELUATA'">Preluată</span>
-    <span th:case="'IN_DESFASURARE'">În desfășurare</span>
-    <span th:case="'GATA'">Gata</span>
-    <span th:case="'ANULATA'">Anulată</span>
+    <span class="status-badge" th:switch="${order.status}">
+    <span th:case="'NEW'" class="status-new">Nouă</span>
+    <span th:case="'PRELUATA'" class="status-preluata">Preluată</span>
+    <span th:case="'IN_DESFASURARE'" class="status-in-desfasurare">În desfășurare</span>
+    <span th:case="'GATA'" class="status-gata">Gata</span>
+    <span th:case="'ANULATA'" class="status-anulata">Anulată</span>
     <span th:case="*">Necunoscut</span>
-
   </span>
 </p>
 
-<p>Total: <b th:text="${order.total}"></b></p>
+<p>Total: <b class="total-price" th:text="${order.total}"></b></p>
 <p>Adresă: <span th:text="${order.deliveryAddress}"></span></p>
 <p>Telefon: <span th:text="${order.phone}"></span></p>
 <p><b>Deadline:</b> <span th:text="${order.requiredBy}"></span></p>
+</div>
 
+<div class="products-section">
 <h3>Produse</h3>
-<table border="1" cellpadding="6">
+<table>
     <thead>
     <tr><th>Floare</th><th>Preț</th><th>Cant.</th><th>Total</th></tr>
     </thead>
@@ -37,8 +44,9 @@
     </tr>
     </tbody>
 </table>
+</div>
 
-<p><a th:href="@{/orders}">Înapoi</a></p>
-
+<a class="back-link" th:href="@{/orders}">Înapoi</a>
+</div>
 </body>
 </html>

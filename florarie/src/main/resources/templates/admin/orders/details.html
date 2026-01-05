@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin - Detalii comandă</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
-
+<div class="order-admin-container">
+<div class="order-info">
 <h1>Comandă #<span th:text="${order.id}"></span></h1>
 
-<p>
+<p class="nav-links">
     <a th:href="@{/admin/orders}">Înapoi la comenzi</a> |
     <a th:href="@{/admin/flowers}">Admin - Flori</a>
 </p>
@@ -18,7 +21,9 @@
 <p><b>Adresă:</b> <span th:text="${order.deliveryAddress}"></span></p>
 <p><b>Telefon:</b> <span th:text="${order.phone}"></span></p>
 <p><b>Total:</b> <span th:text="${order.total}"></span></p>
+</div>
 
+<div class="status-form">
 <h3>Schimbă status</h3>
 <form th:action="@{/admin/orders/{id}/status(id=${order.id})}" method="post">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -33,9 +38,11 @@
 
     <button type="submit">Salvează</button>
 </form>
+</div>
 
+<div class="products-section">
 <h3>Produse</h3>
-<table border="1" cellpadding="6">
+<table>
     <thead>
     <tr><th>Floare</th><th>Preț</th><th>Cant.</th><th>Total</th></tr>
     </thead>
@@ -48,17 +55,20 @@
     </tr>
     </tbody>
 </table>
+</div>
+
+<div class="steps-section">
 <h3>Etape</h3>
 
 <div th:if="${#lists.isEmpty(steps)}">
     <p>Nu există etape pentru această comandă.</p>
     <form th:action="@{/admin/orders/{id}/steps/init(id=${order.id})}" method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <button type="submit">Inițializează etape</button>
+        <button type="submit" class="init-steps-btn">Inițializează etape</button>
     </form>
 </div>
 
-<table border="1" cellpadding="6">
+<table>
     <thead>
     <tr>
         <th>Etapă</th>
@@ -80,14 +90,15 @@
         <td>
             <form th:action="@{/admin/orders/{oid}/steps/{sid}/toggle(oid=${order.id}, sid=${s.id})}" method="post" style="display:inline;">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                <button type="submit" th:text="${s.done ? 'Marchează nefinalizată' : 'Finalizează'}"></button>
+                <button type="submit" class="toggle-step-btn" th:text="${s.done ? 'Marchează nefinalizată' : 'Finalizează'}"></button>
             </form>
         </td>
     </tr>
     </tbody>
 </table>
+</div>
 
-
+<div class="deadline-form">
 <p>
     <b>Deadline:</b>
     <span th:text="${order.requiredBy != null ? order.requiredBy : '—'}">—</span>
@@ -101,7 +112,7 @@
 
     <button type="submit">Salvează deadline</button>
 </form>
-
-
+</div>
+</div>
 </body>
 </html>

@@ -124,6 +124,19 @@ public class BouquetController {
     }
 
     @GetMapping("/remove/{id}")
+    public String confirmRemove(@PathVariable Long id, HttpSession session, Model model) {
+        Map<Long, BouquetItem> cart = getCart(session);
+        BouquetItem item = cart.get(id);
+        
+        if (item == null) {
+            return "redirect:/bouquet";
+        }
+        
+        model.addAttribute("item", item);
+        return "bouquet/confirm-remove";
+    }
+
+    @PostMapping("/remove/{id}")
     public String remove(@PathVariable Long id, HttpSession session) {
         Map<Long, BouquetItem> cart = getCart(session);
         cart.remove(id);

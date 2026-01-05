@@ -1,0 +1,249 @@
+/* Stiluri pentru panoul admin */
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.admin-header {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.admin-header h1 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 15px;
+}
+
+.admin-nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.admin-nav a {
+    padding: 8px 16px;
+    background: #667eea;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.admin-nav a:hover {
+    background: #764ba2;
+    text-decoration: none;
+}
+
+.add-new-btn {
+    background: #28a745 !important;
+}
+
+.add-new-btn:hover {
+    background: #218838 !important;
+}
+
+.admin-table {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.edit-btn {
+    background: #ffc107;
+    color: #333;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.edit-btn:hover {
+    background: #e0a800;
+}
+
+.delete-btn {
+    background: #dc3545;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.action-links a {
+    margin-right: 10px;
+}
+
+/* Stiluri pentru formulare admin */
+.admin-form-container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.admin-form-container h1 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 30px;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-row label {
+    font-weight: 600;
+    color: #333;
+}
+
+.field-error {
+    color: #dc3545;
+    font-size: 14px;
+    background: #f8d7da;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.cancel-btn {
+    background: #6c757d;
+}
+
+.cancel-btn:hover {
+    background: #5a6268;
+}
+
+/* Stiluri pentru confirmare ștergere */
+.confirm-delete-container {
+    max-width: 600px;
+    margin: 100px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.confirm-delete-container h1 {
+    color: #dc3545;
+    text-shadow: none;
+    margin-bottom: 30px;
+}
+
+.confirm-delete-container p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.confirm-delete-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.confirm-btn {
+    background: #dc3545;
+    padding: 12px 30px;
+}
+
+.confirm-btn:hover {
+    background: #c82333;
+}
+
+/* Stiluri pentru detalii comandă admin */
+.order-admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.status-form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.status-form select {
+    width: auto;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.steps-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.steps-section h3 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 15px;
+}
+
+.init-steps-btn {
+    background: #17a2b8;
+}
+
+.init-steps-btn:hover {
+    background: #138496;
+}
+
+.toggle-step-btn {
+    background: #28a745;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.step-done {
+    background-color: #d4edda !important;
+}
+
+.deadline-form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.deadline-form input {
+    width: auto;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Stiluri pentru comenzi întârziate */
+.overdue-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.overdue-warning {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    color: #856404;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,113 @@
+/* Stiluri pentru comenzi */
+.orders-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.orders-header {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.orders-header h1 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 15px;
+}
+
+.order-details-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.order-info {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.order-info h1 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 20px;
+}
+
+.order-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.order-info b {
+    color: #667eea;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.status-new {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-preluata {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-in-desfasurare {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.status-gata {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-anulata {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.products-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.products-section h3 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 15px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #667eea;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    background: #764ba2;
+    text-decoration: none;
+}
+
+.total-price {
+    font-size: 1.3em;
+    color: #28a745;
+}

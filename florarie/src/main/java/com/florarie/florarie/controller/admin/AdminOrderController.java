@@ -106,6 +106,32 @@ public class AdminOrderController {
         return "redirect:/admin/orders/" + id;
     }
 
+    @GetMapping("/{id}/delete")
+    public String confirmDelete(@PathVariable Long id, Model model) {
+        CustomerOrder order = orderRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Comanda inexistentă: " + id));
+        model.addAttribute("order", order);
+        return "admin/orders/confirm-delete";
+    }
 
+    @PostMapping("/{id}/delete")
+    public String deleteOrder(@PathVariable Long id) {
+        CustomerOrder order = orderRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Comanda inexistentă: " + id));
+        orderRepository.delete(order);
+        return "redirect:/admin/orders";
+    }
+
+    @PostMapping("/{id}/deadline")
+    public String updateDeadline(@PathVariable Long id,
+                                 @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requiredBy) {
+        CustomerOrder order = orderRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Comanda inexistentă: " + id));
+        
+        order.setRequiredBy(requiredBy);
+        orderRepository.save(order);
+        
+        return "redirect:/admin/orders/" + id;
+    }
 
 }

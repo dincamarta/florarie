@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Comenzile mele</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Comenzile mele</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/orders.css}">
+</head>
 <body>
-
+<div class="orders-container">
+<div class="orders-header">
 <h1>Comenzile mele</h1>
 <a th:href="@{/}">Home</a>
+</div>
 
-<table border="1" cellpadding="6">
+<table>
     <thead>
-    <tr><th>ID</th><th>Data</th><th>Status</th><th>Total</th><th></th></tr>
+    <tr><th>ID</th><th>Data</th><th>Status</th><th>Total</th><th>Acțiuni</th></tr>
     </thead>
     <tbody>
     <tr th:each="o : ${orders}">
@@ -16,10 +23,13 @@
         <td th:text="${o.createdAt}"></td>
         <td th:text="${o.status}"></td>
         <td th:text="${o.total}"></td>
-        <td><a th:href="@{/orders/{id}(id=${o.id})}">Detalii</a></td>
+        <td class="action-links">
+            <a th:href="@{/orders/{id}(id=${o.id})}">Detalii</a>
+            <a class="delete-btn" th:href="@{/orders/{id}/delete(id=${o.id})}">Șterge</a>
+        </td>
     </tr>
     </tbody>
 </table>
-
+</div>
 </body>
 </html>

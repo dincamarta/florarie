@@ -1,0 +1,81 @@
+/* Stiluri pentru checkout */
+.checkout-container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.checkout-container h1 {
+    color: #667eea;
+    text-shadow: none;
+    margin-bottom: 30px;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field label {
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.form-field textarea {
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.validation-error {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.submit-order-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 10px;
+    background: #28a745;
+}
+
+.submit-order-btn:hover {
+    background: #218838;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #667eea;
+    font-weight: 500;
+}
+
+.general-error {
+    background: #f8d7da;
+    border: 2px solid #dc3545;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.general-error b {
+    display: block;
+    margin-bottom: 5px;
+}

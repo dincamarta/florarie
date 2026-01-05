@@ -4,21 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin - Comenzi</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
-
+<div class="admin-container">
+<div class="admin-header">
 <h1>Comenzi (Admin)</h1>
 
-<p>
-    <a th:href="@{/admin/flowers}">Admin - Flori</a> |
-    <a th:href="@{/}">Home</a> |
+<div class="admin-nav">
+    <a th:href="@{/admin/flowers}">Admin - Flori</a>
+    <a th:href="@{/}">Home</a>
 <form th:action="@{/logout}" method="post" style="display:inline;">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-    <button type="submit">Logout</button>
+    <button type="submit" class="logout-btn">Logout</button>
 </form>
-</p>
+</div>
+</div>
 
-<table border="1" cellpadding="6">
+<div class="admin-table">
+<table>
     <thead>
     <tr>
         <th>ID</th>
@@ -26,7 +31,7 @@
         <th>User</th>
         <th>Status</th>
         <th>Total</th>
-        <th></th>
+        <th>Acțiuni</th>
     </tr>
     </thead>
     <tbody>
@@ -36,14 +41,15 @@
         <td th:text="${o.user != null ? o.user.email : 'N/A'}"></td>
         <td th:text="${o.status}">NEW</td>
         <td th:text="${o.total}">0</td>
-        <td>
+        <td class="action-links">
             <a th:href="@{/admin/orders/{id}(id=${o.id})}">Detalii</a>
             <a th:href="@{/admin/orders/overdue}">Vezi întârziate</a>
-
+            <a class="delete-btn" th:href="@{/admin/orders/{id}/delete(id=${o.id})}">Șterge</a>
         </td>
     </tr>
     </tbody>
 </table>
-
+</div>
+</div>
 </body>
 </html>

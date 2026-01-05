@@ -1,0 +1,82 @@
+/* Stiluri pentru pagina principală */
+.home-container {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.home-container h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.menu-list {
+    list-style: none;
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.menu-list li {
+    margin: 20px 0;
+    padding: 15px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s;
+}
+
+.menu-list li:hover {
+    background: #f8f9fa;
+    border-left-width: 8px;
+    padding-left: 20px;
+}
+
+.menu-list a {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 500;
+}
+
+.user-info {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info b {
+    color: #667eea;
+}
+
+.user-info form {
+    display: inline;
+}
+
+.logout-btn {
+    background: #dc3545;
+    padding: 8px 16px;
+}
+
+.logout-btn:hover {
+    background: #c82333;
+}
+
+.auth-actions {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.auth-actions a {
+    margin: 0 15px;
+    font-size: 1.1em;
+    font-weight: 500;
+}

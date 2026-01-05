@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Admin - Întârziate</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Întârziate</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
 <body>
-
+<div class="overdue-container">
+<div class="admin-header">
 <h1>Comenzi întârziate</h1>
 <p><a th:href="@{/admin/orders}">Înapoi la comenzi</a></p>
+</div>
 
-<table border="1" cellpadding="6">
+<div class="overdue-warning">
+    <p><b>Atenție!</b> Aceste comenzi au depășit termenul limita.</p>
+</div>
+
+<div class="admin-table">
+<table>
     <thead>
     <tr><th>ID</th><th>Deadline</th><th>Status</th><th>User</th><th></th></tr>
     </thead>
@@ -20,6 +32,7 @@
     </tr>
     </tbody>
 </table>
-
+</div>
+</div>
 </body>
 </html>
