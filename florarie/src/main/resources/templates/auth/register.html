@@ -2,41 +2,60 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Creare Cont - Florărie</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/auth.css}">
 </head>
 <body>
-<div class="auth-container">
-<h1>Creare cont</h1>
-
-<form class="auth-form" th:action="@{/register}" th:object="${form}" method="post">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-
-    <div class="form-group">
-        <label>Email:</label>
-        <input type="email" th:field="*{email}">
-        <div class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+<div class="auth-page">
+    <!-- Background Decoration -->
+    <div class="auth-background">
+        <div class="flower-decoration">🌸</div>
+        <div class="flower-decoration">🌺</div>
+        <div class="flower-decoration">🌷</div>
     </div>
 
-    <div class="form-group">
-        <label>Parolă:</label>
-        <input type="password" th:field="*{password}">
-        <div class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+    <!-- Auth Card -->
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="logo-icon">🌹</div>
+            <h1>Creează un cont nou</h1>
+            <p>Alătură-te comunității noastre</p>
+        </div>
+
+        <!-- Register Form -->
+        <form class="auth-form" th:action="@{/register}" th:object="${form}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <div class="input-group">
+                <label>📧 Email</label>
+                <input type="text" th:field="*{email}" placeholder="exemplu@email.com" required>
+                <div class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            </div>
+
+            <div class="input-group">
+                <label>🔒 Parolă</label>
+                <input type="password" th:field="*{password}" placeholder="Minimum 6 caractere" required>
+                <div class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </div>
+
+            <div class="input-group">
+                <label>🔒 Confirmă Parola</label>
+                <input type="password" th:field="*{confirmPassword}" placeholder="Reintrodu parola" required>
+                <div class="field-error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+            </div>
+
+            <button type="submit" class="auth-submit-btn">
+                Creează Contul
+            </button>
+        </form>
+
+        <!-- Links -->
+        <div class="auth-footer">
+            <p>Ai deja cont? <a th:href="@{/login}" class="auth-link">Autentifică-te</a></p>
+            <a th:href="@{/}" class="home-link">← Înapoi la pagina principală</a>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label>Confirmă parola:</label>
-        <input type="password" th:field="*{confirmPassword}">
-        <div class="field-error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
-    </div>
-
-    <button type="submit" class="submit-btn">Creează cont</button>
-</form>
-
-<div class="auth-links">
-    <p>Ai deja cont? <a th:href="@{/login}">Login</a></p>
-</div>
 </div>
 </body>
 </html>

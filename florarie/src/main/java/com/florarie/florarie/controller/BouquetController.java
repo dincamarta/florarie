@@ -1,3 +1,7 @@
+/** Controller pentru gestionarea cosului de cumparaturi (buchetul)
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.controller;
 
 import com.florarie.florarie.dto.BouquetItem;
@@ -86,14 +90,23 @@ public class BouquetController {
 
     @PostMapping("/update")
     public String update(@RequestParam Long flowerId,
-                         @RequestParam int quantity,
+                         @RequestParam String quantity,
                          HttpSession session,
                          Model model) {
 
         Map<Long, BouquetItem> cart = getCart(session);
 
+        // Validare cantitate - trebuie să fie număr întreg pozitiv
+        int qty;
+        try {
+            qty = Integer.parseInt(quantity);
+        } catch (NumberFormatException e) {
+            renderBouquet(session, model, "Cantitatea trebuie să fie un număr întreg (ex: 1, 2, 3). Nu sunt permise numere cu virgulă.");
+            return "bouquet/view";
+        }
+
         // daca quantity <=0 => sterge produsul din buchet
-        if (quantity <= 0) {
+        if (qty <= 0) {
             cart.remove(flowerId);
             return "redirect:/bouquet";
         }
@@ -107,9 +120,9 @@ public class BouquetController {
             return "bouquet/view";
         }
 
-        if (quantity > flower.getStock()) {
+        if (qty > flower.getStock()) {
             renderBouquet(session, model,
-                    "Ai cerut " + quantity + " buc. din \"" + flower.getName() +
+                    "Ai cerut " + qty + " buc. din \"" + flower.getName() +
                             "\", dar stocul este " + flower.getStock() +
                             ". Alege o cantitate mai mică.");
             return "bouquet/view";
@@ -117,7 +130,7 @@ public class BouquetController {
 
         BouquetItem item = cart.get(flowerId);
         if (item != null) {
-            item.setQuantity(quantity);
+            item.setQuantity(qty);
         }
 
         return "redirect:/bouquet";

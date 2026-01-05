@@ -1,3 +1,7 @@
+/** Clasa DTO pentru formularul de finalizare comanda
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.dto;
 
 import jakarta.validation.constraints.*;
@@ -16,8 +20,7 @@ public class CheckoutForm {
     private String deliveryAddress;
 
     @NotBlank(message = "Telefonul este obligatoriu")
-    @Pattern(regexp = "^[0-9]+$", message = "Telefonul trebuie să conțină doar cifre")
-    @Size(min = 9, max = 15, message = "Telefonul trebuie să aibă între 9 și 15 cifre")
+    @Pattern(regexp = "^0[0-9]{9}$", message = "Telefonul trebuie să înceapă cu 0 și să aibă exact 10 cifre (ex: 0712345678)")
     private String phone;
 
     @Size(max = 500)

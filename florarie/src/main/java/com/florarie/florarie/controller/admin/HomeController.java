@@ -1,3 +1,7 @@
+/** Controller pentru gestionarea paginii de start admin
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.controller.admin;
 
 import org.springframework.stereotype.Controller;

@@ -1,12 +1,16 @@
+/** Clasa DTO pentru formularul de inregistrare utilizatori
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.dto;
 
-import jakarta.validation.constraints.Email;
+import com.florarie.florarie.validation.ValidEmail;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class RegisterForm {
 
-    @Email(message = "Email invalid")
+    @ValidEmail
     @NotBlank(message = "Email-ul este obligatoriu")
     private String email;
 

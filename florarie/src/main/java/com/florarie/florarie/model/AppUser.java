@@ -1,3 +1,7 @@
+/** Clasa pentru modelarea unui utilizator al aplicatiei
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.model;
 
 import jakarta.persistence.*;

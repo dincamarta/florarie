@@ -8,48 +8,79 @@
     <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
-<div class="admin-container">
-<div class="admin-header">
-<h1>Comenzi (Admin)</h1>
+<div class="admin-page">
+    <!-- Header -->
+    <div class="admin-hero">
+        <div class="admin-hero-content">
+            <h1>⚙️ Gestionare Comenzi</h1>
+            <p>Panou de administrare comenzi</p>
+        </div>
+    </div>
 
-<div class="admin-nav">
-    <a th:href="@{/admin/flowers}">Admin - Flori</a>
-    <a th:href="@{/}">Home</a>
-<form th:action="@{/logout}" method="post" style="display:inline;">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-    <button type="submit" class="logout-btn">Logout</button>
-</form>
-</div>
-</div>
+    <!-- Navigation Bar -->
+    <div class="admin-nav-bar">
+        <div class="admin-nav-links">
+            <a th:href="@{/admin/flowers}">🌸 Administrare Flori</a>
+            <a th:href="@{/admin/orders/overdue}">⚠️ Comenzi Întârziate</a>
+            <a th:href="@{/}">🏠 Home</a>
+        </div>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button type="submit" class="logout-btn-nav">Logout</button>
+        </form>
+    </div>
 
-<div class="admin-table">
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Data</th>
-        <th>User</th>
-        <th>Status</th>
-        <th>Total</th>
-        <th>Acțiuni</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="o : ${orders}">
-        <td th:text="${o.id}">1</td>
-        <td th:text="${o.createdAt}"></td>
-        <td th:text="${o.user != null ? o.user.email : 'N/A'}"></td>
-        <td th:text="${o.status}">NEW</td>
-        <td th:text="${o.total}">0</td>
-        <td class="action-links">
-            <a th:href="@{/admin/orders/{id}(id=${o.id})}">Detalii</a>
-            <a th:href="@{/admin/orders/overdue}">Vezi întârziate</a>
-            <a class="delete-btn" th:href="@{/admin/orders/{id}/delete(id=${o.id})}">Șterge</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-</div>
+    <!-- Orders Grid -->
+    <div class="admin-content">
+        <div th:if="${orders.empty}" class="empty-state">
+            <div class="empty-icon">📦</div>
+            <h2>Nicio comandă în sistem</h2>
+            <p>Comenzile clienților vor apărea aici</p>
+        </div>
+
+        <div th:unless="${orders.empty}" class="admin-orders-grid">
+            <div class="admin-order-card" th:each="o : ${orders}">
+                <div class="admin-order-header">
+                    <div class="order-id-section">
+                        <span class="order-label">Comandă #</span>
+                        <span class="order-number" th:text="${o.id}">1</span>
+                    </div>
+                    <span class="status-badge-admin" th:classappend="${o.status.name()}" th:text="${o.status}">NEW</span>
+                </div>
+
+                <div class="admin-order-body">
+                    <div class="order-detail-row">
+                        <span class="detail-icon">👤</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Client:</span>
+                            <span class="detail-value" th:text="${o.user != null ? o.user.email : 'N/A'}">user@email.com</span>
+                        </div>
+                    </div>
+
+                    <div class="order-detail-row">
+                        <span class="detail-icon">📅</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Data comandă:</span>
+                            <span class="detail-value" th:text="${#temporals.format(o.createdAt, 'dd MMM yyyy, HH:mm')}"></span>
+                        </div>
+                    </div>
+
+                    <div class="order-detail-row">
+                        <span class="detail-icon">💰</span>
+                        <div class="detail-content">
+                            <span class="detail-label">Total:</span>
+                            <span class="detail-value price-highlight" th:text="${o.total} + ' RON'">0 RON</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-order-actions">
+                    <a class="btn-view" th:href="@{/admin/orders/{id}(id=${o.id})}">📋 Detalii</a>
+                    <a class="btn-remove" th:href="@{/admin/orders/{id}/delete(id=${o.id})}">🗑️ Șterge</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

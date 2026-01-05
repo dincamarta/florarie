@@ -1,3 +1,7 @@
+/** Enum pentru statusurile posibile ale unei comenzi
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.model;
 
 public enum OrderStatus {

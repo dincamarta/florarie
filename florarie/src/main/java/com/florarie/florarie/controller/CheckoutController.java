@@ -1,3 +1,7 @@
+/** Controller pentru gestionarea procesului de finalizare comanda
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.controller;
 
 import com.florarie.florarie.dto.BouquetItem;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -65,10 +70,13 @@ public class CheckoutController {
         Map<Long, BouquetItem> cart = getCart(session);
         if (cart.isEmpty()) return "redirect:/bouquet";
 
-        if (form.getRequiredBy() != null && form.getRequiredBy().isBefore(java.time.LocalDateTime.now().plusMinutes(30))) {
-            bindingResult.rejectValue("requiredBy", "requiredBy.tooSoon",
-                    "Deadline-ul trebuie să fie cu cel puțin 30 de minute în viitor");
-            return "checkout/form";
+        // Validare deadline - trebuie să fie cu cel puțin 30 de minute în viitor
+        if (form.getRequiredBy() != null) {
+            LocalDateTime minimumDeadline = java.time.LocalDateTime.now().plusMinutes(30);
+            if (form.getRequiredBy().isBefore(minimumDeadline)) {
+                bindingResult.rejectValue("requiredBy", "requiredBy.tooSoon",
+                        "Deadline-ul trebuie să fie cu cel puțin 30 de minute în viitor");
+            }
         }
 
         // daca sunt erori (inclusiv requiredBy null / in trecut)

@@ -1,3 +1,7 @@
+/** Clasa DTO pentru reprezentarea unui produs din cosul de cumparaturi
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.dto;
 
 public class BouquetItem {

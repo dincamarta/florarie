@@ -1,3 +1,7 @@
+/** Controller pentru gestionarea administrarii comenzilor de catre admin
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.controller.admin;
 
 import com.florarie.florarie.model.CustomerOrder;

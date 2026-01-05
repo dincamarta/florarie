@@ -2,34 +2,65 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Comenzile mele</title>
+    <title>Comenzile Mele - Florăria Petale de Vară</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/orders.css}">
 </head>
 <body>
-<div class="orders-container">
-<div class="orders-header">
-<h1>Comenzile mele</h1>
-<a th:href="@{/}">Home</a>
-</div>
+<div class="orders-page">
+    <!-- Header -->
+    <div class="orders-hero">
+        <div class="orders-hero-content">
+            <h1>Comenzile Mele</h1>
+            <p>Urmărește statusul comenzilor tale</p>
+        </div>
+    </div>
 
-<table>
-    <thead>
-    <tr><th>ID</th><th>Data</th><th>Status</th><th>Total</th><th>Acțiuni</th></tr>
-    </thead>
-    <tbody>
-    <tr th:each="o : ${orders}">
-        <td th:text="${o.id}">1</td>
-        <td th:text="${o.createdAt}"></td>
-        <td th:text="${o.status}"></td>
-        <td th:text="${o.total}"></td>
-        <td class="action-links">
-            <a th:href="@{/orders/{id}(id=${o.id})}">Detalii</a>
-            <a class="delete-btn" th:href="@{/orders/{id}/delete(id=${o.id})}">Șterge</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <!-- Navigation -->
+    <div class="orders-nav">
+        <a class="nav-link-btn" th:href="@{/}">🏠 Acasă</a>
+        <a class="nav-link-btn" th:href="@{/flowers}">🌸 Catalog Flori</a>
+        <a class="nav-link-btn" th:href="@{/bouquet}">🛒 Buchetul Meu</a>
+    </div>
+
+    <!-- Orders Grid -->
+    <div class="orders-content">
+        <div th:if="${orders.empty}" class="empty-state">
+            <div class="empty-icon">📦</div>
+            <h2>Nicio comandă încă</h2>
+            <p>Creează primul tău buchet și comandă florile tale preferate!</p>
+            <a class="cta-btn-small" th:href="@{/flowers}">Începe să cumperi</a>
+        </div>
+
+        <div th:unless="${orders.empty}" class="orders-grid">
+            <div class="order-card" th:each="o : ${orders}">
+                <div class="order-card-header">
+                    <div class="order-id">
+                        <span class="label">Comandă #</span>
+                        <span class="value" th:text="${o.id}">1</span>
+                    </div>
+                    <span class="status-badge" th:classappend="${o.status.name()}" th:text="${o.status}">NEW</span>
+                </div>
+
+                <div class="order-card-body">
+                    <div class="order-info-row">
+                        <span class="info-label">📅 Data comenzii:</span>
+                        <span class="info-value" th:text="${#temporals.format(o.createdAt, 'dd MMM yyyy, HH:mm')}"></span>
+                    </div>
+                    
+                    <div class="order-info-row">
+                        <span class="info-label">💰 Total:</span>
+                        <span class="info-value price" th:text="${o.total} + ' RON'">0 RON</span>
+                    </div>
+                </div>
+
+                <div class="order-card-actions">
+                    <a class="btn-details" th:href="@{/orders/{id}(id=${o.id})}">Vezi Detalii</a>
+                    <a class="btn-delete" th:href="@{/orders/{id}/delete(id=${o.id})}">Șterge</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -1,3 +1,7 @@
+/** Clasa pentru modelarea unei etape in procesul de realizare a comenzii
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.model;
 
 import jakarta.persistence.*;

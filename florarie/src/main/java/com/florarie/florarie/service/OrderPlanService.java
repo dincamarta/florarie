@@ -1,3 +1,7 @@
+/** Serviciu pentru calcularea planificarii etapelor unei comenzi
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.service;
 
 import com.florarie.florarie.model.CustomerOrder;

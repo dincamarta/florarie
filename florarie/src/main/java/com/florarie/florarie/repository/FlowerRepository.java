@@ -1,3 +1,7 @@
+/** Repository pentru gestionarea operatiilor cu baza de date pentru flori
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.repository;
 
 import com.florarie.florarie.model.Flower;

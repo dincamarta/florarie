@@ -1,3 +1,7 @@
+/** Controller pentru gestionarea afisarii catalogului de flori
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.controller;
 
 import com.florarie.florarie.repository.FlowerRepository;

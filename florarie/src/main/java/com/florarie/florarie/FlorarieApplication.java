@@ -1,3 +1,7 @@
+/** Clasa principala pentru pornirea aplicatiei Spring Boot
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie;
 
 import org.springframework.boot.SpringApplication;

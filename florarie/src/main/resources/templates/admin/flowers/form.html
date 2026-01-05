@@ -12,7 +12,8 @@
 
 <form class="admin-form" th:action="${mode == 'create'} ? @{/admin/flowers} : @{/admin/flowers/{id}(id=${flower.id})}"
       th:object="${flower}"
-      method="post">
+      method="post"
+      enctype="multipart/form-data">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
   <div class="form-row">
@@ -43,6 +44,14 @@
     <label>Disponibil:</label>
     <input type="checkbox" th:field="*{available}">
   </div>
+
+  <div class="form-row">
+    <label>Imagine:</label>
+    <input type="file" name="imageFile" accept="image/*">
+    <small th:if="${flower.imagePath}" style="color: #888;">Imagine curentă: <span th:text="${flower.imagePath}"></span></small>
+  </div>
+  
+  <div class="field-error" th:if="${uploadError}" th:text="${uploadError}"></div>
 
   <div class="form-actions">
     <button type="submit">Salvează</button>

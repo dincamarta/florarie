@@ -1,3 +1,7 @@
+/** Clasa pentru definirea bean-urilor de securitate
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.config;
 
 import org.springframework.context.annotation.Bean;

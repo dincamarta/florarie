@@ -1,3 +1,7 @@
+/** Clasa pentru modelarea unei flori din catalog
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.model;
 
 import jakarta.persistence.*;
@@ -42,6 +46,9 @@ public class Flower {
     @Column(nullable = false)
     private boolean available = true;
 
+    @Column(length = 255)
+    private String imagePath;
+
     public Flower() { }
 
     // ===== getters/setters =====
@@ -63,4 +70,7 @@ public class Flower {
 
     public boolean isAvailable() { return available; }
     public void setAvailable(boolean available) { this.available = available; }
+
+    public String getImagePath() { return imagePath; }
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 }

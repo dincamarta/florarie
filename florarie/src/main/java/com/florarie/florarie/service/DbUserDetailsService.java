@@ -1,3 +1,7 @@
+/** Serviciu pentru incarcarea detaliilor utilizatorilor din baza de date pentru autentificare
+ * @author Dinca (Mateas) Marta
+ * @version 05 Ianuarie 2026
+ */
 package com.florarie.florarie.service;
 
 import com.florarie.florarie.model.AppUser;

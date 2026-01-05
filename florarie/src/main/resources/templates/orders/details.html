@@ -2,51 +2,93 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Detalii comandă</title>
+    <title>Detalii Comandă</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/orders.css}">
 </head>
 <body>
-<div class="order-details-container">
-<div class="order-info">
-<h1>Comandă #<span th:text="${order.id}"></span></h1>
+<div class="order-detail-page">
+    <!-- Hero Section -->
+    <div class="order-detail-hero">
+        <div class="hero-content">
+            <h1>📦 Comanda #<span th:text="${order.id}"></span></h1>
+            <p>Vizualizare detalii comandă</p>
+        </div>
+    </div>
 
-<p>
-    <b>Status:</b>
-    <span class="status-badge" th:switch="${order.status}">
-    <span th:case="'NEW'" class="status-new">Nouă</span>
-    <span th:case="'PRELUATA'" class="status-preluata">Preluată</span>
-    <span th:case="'IN_DESFASURARE'" class="status-in-desfasurare">În desfășurare</span>
-    <span th:case="'GATA'" class="status-gata">Gata</span>
-    <span th:case="'ANULATA'" class="status-anulata">Anulată</span>
-    <span th:case="*">Necunoscut</span>
-  </span>
-</p>
+    <!-- Navigation -->
+    <div class="detail-nav">
+        <a class="back-to-orders-btn" th:href="@{/orders}">← Înapoi la comenzi</a>
+    </div>
 
-<p>Total: <b class="total-price" th:text="${order.total}"></b></p>
-<p>Adresă: <span th:text="${order.deliveryAddress}"></span></p>
-<p>Telefon: <span th:text="${order.phone}"></span></p>
-<p><b>Deadline:</b> <span th:text="${order.requiredBy}"></span></p>
-</div>
+    <!-- Content -->
+    <div class="order-detail-content">
+        <div class="detail-layout">
+            <!-- Left Column - Info -->
+            <div class="detail-left-column">
+                <!-- Status Card -->
+                <div class="info-card">
+                    <h2>📊 Status Comandă</h2>
+                    <div class="status-display" th:switch="${order.status}">
+                        <span th:case="'NEW'" class="status-badge-large status-new">🆕 Nouă</span>
+                        <span th:case="'PRELUATA'" class="status-badge-large status-preluata">👁️ Preluată</span>
+                        <span th:case="'IN_DESFASURARE'" class="status-badge-large status-in-desfasurare">⚙️ În lucru</span>
+                        <span th:case="'GATA'" class="status-badge-large status-gata">✓ Gata</span>
+                        <span th:case="'ANULATA'" class="status-badge-large status-anulata">✗ Anulată</span>
+                        <span th:case="*" class="status-badge-large">Necunoscut</span>
+                    </div>
+                </div>
 
-<div class="products-section">
-<h3>Produse</h3>
-<table>
-    <thead>
-    <tr><th>Floare</th><th>Preț</th><th>Cant.</th><th>Total</th></tr>
-    </thead>
-    <tbody>
-    <tr th:each="it : ${order.items}">
-        <td th:text="${it.flowerName}"></td>
-        <td th:text="${it.unitPrice}"></td>
-        <td th:text="${it.quantity}"></td>
-        <td th:text="${it.lineTotal}"></td>
-    </tr>
-    </tbody>
-</table>
-</div>
+                <!-- Delivery Info Card -->
+                <div class="info-card">
+                    <h2>🚚 Informații Livrare</h2>
+                    <div class="info-row">
+                        <span class="info-label">📍 Adresă:</span>
+                        <span class="info-value" th:text="${order.deliveryAddress}"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">📞 Telefon:</span>
+                        <span class="info-value" th:text="${order.phone}"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">⏰ Deadline:</span>
+                        <span class="info-value" th:text="${order.requiredBy}"></span>
+                    </div>
+                    <div class="info-row" th:if="${order.notes}">
+                        <span class="info-label">📝 Observații:</span>
+                        <span class="info-value" th:text="${order.notes}"></span>
+                    </div>
+                </div>
 
-<a class="back-link" th:href="@{/orders}">Înapoi</a>
+                <!-- Total Card -->
+                <div class="info-card total-card">
+                    <h2>💰 Total Comandă</h2>
+                    <div class="total-amount" th:text="${order.total} + ' LEI'"></div>
+                </div>
+            </div>
+
+            <!-- Right Column - Products -->
+            <div class="detail-right-column">
+                <div class="products-card">
+                    <h2>🌸 Produse Comandate</h2>
+                    <div class="products-grid">
+                        <div class="product-item" th:each="it : ${order.items}">
+                            <div class="product-info">
+                                <div class="product-name" th:text="${it.flowerName}"></div>
+                                <div class="product-price" th:text="${it.unitPrice} + ' LEI/buc'"></div>
+                            </div>
+                            <div class="product-quantity">
+                                <span class="quantity-badge" th:text="${it.quantity} + ' buc'"></span>
+                            </div>
+                            <div class="product-total">
+                                <strong th:text="${it.lineTotal} + ' LEI'"></strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
