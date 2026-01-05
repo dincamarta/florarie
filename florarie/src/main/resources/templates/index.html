@@ -1,15 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Florarie</title>
 </head>
 <body>
+
 <h1>Bine ai venit la Florarie</h1>
 
 <ul>
-    <li><a th:href="@{/admin/flowers}">Admin - Flori</a></li>
+    <li><a th:href="@{/flowers}">Catalog flori</a></li>
+    <li><a th:href="@{/orders}">Comezile mele</a></li>
+    <!-- apare DOAR pentru admin -->
+    <li sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{/admin/flowers}">Admin - Flori</a>
+    </li>
+    <li sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{/admin/orders}">Admin - Comenzi</a>
+    </li>
+
 </ul>
+
+<!-- info user -->
+<div sec:authorize="isAuthenticated()">
+    Logat ca: <b sec:authentication="name"></b>
+    | <form th:action="@{/logout}" method="post" style="display:inline;">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <button type="submit">Logout</button>
+</form>
+
+</div>
+
+<div sec:authorize="isAnonymous()">
+    <a th:href="@{/login}">Login</a> | <a th:href="@{/register}">Register</a>
+</div>
 
 </body>
 </html>

@@ -10,7 +10,7 @@
 
 <p>
     <a th:href="@{/flowers}">Înapoi la catalog</a> |
-    <a th:href="@{/}">Home</a>
+    <a th:href="@{/}">Home</a> |
     <a th:href="@{/checkout}">Finalizează comanda</a>
 
 </p>
@@ -50,6 +50,10 @@
 </table>
 
 <h3>Total: <span th:text="${total}">0</span></h3>
+
+<div th:if="${error}" style="border:1px solid #c00; padding:10px; margin:10px 0;">
+    <b>Eroare:</b> <span th:text="${error}"></span>
+</div>
 
 </body>
 </html>

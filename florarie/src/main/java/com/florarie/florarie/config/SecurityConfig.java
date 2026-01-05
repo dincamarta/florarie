@@ -13,7 +13,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(auth -> auth
                 // public
-                .requestMatchers("/", "/flowers/**", "/bouquet/**", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/", "/register", "/login", "/flowers/**", "/bouquet/**", "/css/**", "/js/**").permitAll()
                 // H2 console (doar dev)
                 .requestMatchers("/h2-console/**").permitAll()
                 // admin
@@ -22,7 +22,13 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
         );
 
-        http.formLogin(login -> login.permitAll());
+        http.formLogin(login -> login
+                .loginPage("/login")
+                .permitAll()
+                .defaultSuccessUrl("/flowers", true)
+        );
+
+
         http.logout(logout -> logout.permitAll());
 
         // H2 console are nevoie de frame + fara CSRF pe acele rute

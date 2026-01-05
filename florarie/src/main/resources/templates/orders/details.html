@@ -5,10 +5,23 @@
 
 <h1>Comandă #<span th:text="${order.id}"></span></h1>
 
-<p>Status: <b th:text="${order.status}"></b></p>
+<p>
+    <b>Status:</b>
+    <span th:switch="${order.status}">
+    <span th:case="'NEW'">Nouă</span>
+    <span th:case="'PRELUATA'">Preluată</span>
+    <span th:case="'IN_DESFASURARE'">În desfășurare</span>
+    <span th:case="'GATA'">Gata</span>
+    <span th:case="'ANULATA'">Anulată</span>
+    <span th:case="*">Necunoscut</span>
+
+  </span>
+</p>
+
 <p>Total: <b th:text="${order.total}"></b></p>
 <p>Adresă: <span th:text="${order.deliveryAddress}"></span></p>
 <p>Telefon: <span th:text="${order.phone}"></span></p>
+<p><b>Deadline:</b> <span th:text="${order.requiredBy}"></span></p>
 
 <h3>Produse</h3>
 <table border="1" cellpadding="6">

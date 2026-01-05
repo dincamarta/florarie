@@ -41,6 +41,17 @@ public class CustomerOrder {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("sortOrder ASC")
+    private List<OrderStep> steps = new ArrayList<>();
+
+    public List<OrderStep> getSteps() { return steps; }
+
+    public void addStep(OrderStep step) {
+        steps.add(step);
+        step.setOrder(this);
+    }
+
     public CustomerOrder() {}
 
     public Long getId() { return id; }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Comenzi</title>
+</head>
+<body>
+
+<h1>Comenzi (Admin)</h1>
+
+<p>
+    <a th:href="@{/admin/flowers}">Admin - Flori</a> |
+    <a th:href="@{/}">Home</a> |
+<form th:action="@{/logout}" method="post" style="display:inline;">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <button type="submit">Logout</button>
+</form>
+</p>
+
+<table border="1" cellpadding="6">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Data</th>
+        <th>User</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="o : ${orders}">
+        <td th:text="${o.id}">1</td>
+        <td th:text="${o.createdAt}"></td>
+        <td th:text="${o.user != null ? o.user.email : 'N/A'}"></td>
+        <td th:text="${o.status}">NEW</td>
+        <td th:text="${o.total}">0</td>
+        <td>
+            <a th:href="@{/admin/orders/{id}(id=${o.id})}">Detalii</a>
+            <a th:href="@{/admin/orders/overdue}">Vezi întârziate</a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

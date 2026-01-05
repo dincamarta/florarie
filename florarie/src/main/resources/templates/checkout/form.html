@@ -10,6 +10,7 @@
 <form th:action="@{/checkout}" th:object="${form}" method="post">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
+
     <div>
         <label>Adresă livrare:</label>
         <input type="text" th:field="*{deliveryAddress}">
@@ -26,6 +27,12 @@
         <label>Observații:</label>
         <textarea th:field="*{notes}"></textarea>
         <div th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></div>
+    </div>
+
+    <div>
+        <label>Deadline (când să fie gata):</label>
+        <input type="datetime-local" th:field="*{requiredBy}">
+        <div th:if="${#fields.hasErrors('requiredBy')}" th:errors="*{requiredBy}"></div>
     </div>
 
     <button type="submit">Plasează comanda</button>

@@ -1,0 +1,6 @@
+#FileLock
+#Mon Jan 05 17:13:03 EET 2026
+hostName=192.168.0.122
+id=19b8eb80596cc5abd6f1f4e74a1c2dc49342a165390
+method=file
+server=192.168.0.122\:52017

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Admin - Întârziate</title></head>
+<body>
+
+<h1>Comenzi întârziate</h1>
+<p><a th:href="@{/admin/orders}">Înapoi la comenzi</a></p>
+
+<table border="1" cellpadding="6">
+    <thead>
+    <tr><th>ID</th><th>Deadline</th><th>Status</th><th>User</th><th></th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="o : ${orders}">
+        <td th:text="${o.id}"></td>
+        <td th:text="${o.requiredBy}"></td>
+        <td th:text="${o.status}"></td>
+        <td th:text="${o.user != null ? o.user.email : 'N/A'}"></td>
+        <td><a th:href="@{/admin/orders/{id}(id=${o.id})}">Detalii</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
