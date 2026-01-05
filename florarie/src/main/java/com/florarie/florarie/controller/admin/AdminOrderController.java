@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 import java.util.List;
+import com.florarie.florarie.service.OrderPlanService;
+
 
 @Controller
 @RequestMapping("/admin/orders")
@@ -20,11 +22,17 @@ public class AdminOrderController {
 
     private final OrderRepository orderRepository;
     private final OrderStepRepository stepRepository;
+    private final OrderPlanService planService;
 
-    public AdminOrderController(OrderRepository orderRepository, OrderStepRepository stepRepository) {
+
+    public AdminOrderController(OrderRepository orderRepository,
+                                OrderStepRepository stepRepository,
+                                OrderPlanService planService) {
         this.orderRepository = orderRepository;
         this.stepRepository = stepRepository;
+        this.planService = planService;
     }
+
 
 
     @GetMapping
@@ -41,10 +49,16 @@ public class AdminOrderController {
 
         model.addAttribute("steps", stepRepository.findByOrderIdOrderBySortOrderAsc(id));
 
+        var plan = planService.compute(order);
+        model.addAttribute("planByName", plan.byStepName());
+        model.addAttribute("planWarning", plan.warning());
+        model.addAttribute("planFits", plan.fitsInDeadlineDay());
+
         model.addAttribute("order", order);
         model.addAttribute("allStatuses", OrderStatus.values());
         return "admin/orders/details";
     }
+
 
     @PostMapping("/{id}/status")
     public String updateStatus(@PathVariable Long id,

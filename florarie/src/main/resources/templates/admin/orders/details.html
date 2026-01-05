@@ -58,14 +58,25 @@
     </form>
 </div>
 
-<table th:if="${!#lists.isEmpty(steps)}" border="1" cellpadding="6">
+<table border="1" cellpadding="6">
     <thead>
-    <tr><th>Etapă</th><th>Stare</th><th></th></tr>
+    <tr>
+        <th>Etapă</th>
+        <th>Stare</th>
+        <th>Începe la</th>
+        <th>Trebuie gata la</th>
+        <th></th>
+    </tr>
     </thead>
+
     <tbody>
     <tr th:each="s : ${steps}">
         <td th:text="${s.name}"></td>
         <td th:text="${s.done ? 'Finalizată' : 'În așteptare'}"></td>
+
+        <td th:text="${planByName[s.name] != null ? #temporals.format(planByName[s.name].startAt(), 'yyyy-MM-dd HH:mm:ss') : '—'}"></td>
+        <td th:text="${planByName[s.name] != null ? #temporals.format(planByName[s.name].dueAt(), 'yyyy-MM-dd HH:mm:ss') : '—'}"></td>
+
         <td>
             <form th:action="@{/admin/orders/{oid}/steps/{sid}/toggle(oid=${order.id}, sid=${s.id})}" method="post" style="display:inline;">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -75,6 +86,7 @@
     </tr>
     </tbody>
 </table>
+
 
 <p>
     <b>Deadline:</b>

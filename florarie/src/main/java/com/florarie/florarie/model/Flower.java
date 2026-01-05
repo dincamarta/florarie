@@ -11,13 +11,21 @@ public class Flower {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Numele este obligatoriu")
-    @Size(max = 100, message = "Numele trebuie să aibă max 100 caractere")
+    @NotBlank(message = "Numele florii este obligatoriu")
+    @Size(min = 2, max = 200, message = "Floarea trebuie să aibă între 2 și 200 caractere")
+    @Pattern(
+            regexp = "^[\\p{L}\\d. ]+$",
+            message = "Numele florii poate conține doar litere, cifre și caracterul '.'"
+    )
     @Column(nullable = false, length = 100)
     private String name;
 
     @NotBlank(message = "Culoarea este obligatorie")
     @Size(max = 50, message = "Culoarea trebuie să aibă max 50 caractere")
+    @Pattern(
+            regexp = "^[\\p{L}\\d- ]+$",
+            message = "Culoarea florii poate conține doar litere, cifre și caracterul '-'"
+    )
     @Column(nullable = false, length = 50)
     private String color;
 
