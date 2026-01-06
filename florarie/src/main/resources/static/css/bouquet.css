@@ -354,9 +354,10 @@
     font-size: 1.1rem;
 }
 
-/* Confirm Remove Page (existing from previous) */
+/* Confirm Remove Page */
 .confirm-remove-page {
     min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -365,71 +366,227 @@
 
 .confirm-remove-container {
     background: white;
-    border-radius: 20px;
+    border-radius: 25px;
     padding: 50px;
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.confirm-remove-header {
     text-align: center;
+    margin-bottom: 35px;
 }
 
 .confirm-icon {
     font-size: 5rem;
     margin-bottom: 20px;
-    animation: shake 0.5s;
+    display: inline-block;
+    animation: bounce 0.6s ease-in-out;
 }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
 }
 
-.item-details-box {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 12px;
-    margin: 25px 0;
+.confirm-remove-header h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 15px;
 }
 
-.item-details-box p {
-    margin: 10px 0;
+.confirm-question {
+    color: #666;
     font-size: 1.1rem;
+    margin: 0;
 }
 
+/* Product Preview Card */
+.product-preview-card {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 25px;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.product-preview-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(102, 126, 234, 0.15);
+}
+
+.flower-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.product-preview-header h3 {
+    color: #667eea;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.product-preview-details {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.detail-row:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.detail-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.detail-content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-label {
+    color: #666;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.detail-value {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.total-highlight {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    border: 2px solid #667eea;
+}
+
+.detail-value-large {
+    color: #667eea;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+/* Warning Message */
+.warning-message {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.warning-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+.warning-message p {
+    color: #856404;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Confirm Actions */
 .confirm-actions {
     display: flex;
     gap: 15px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .btn-cancel {
-    padding: 14px 30px;
-    background: #6c757d;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
     color: white;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 600;
+    font-size: 1.05rem;
     transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .btn-cancel:hover {
-    background: #5a6268;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
 }
 
 .btn-confirm-remove {
-    padding: 14px 30px;
-    background: #dc3545;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 600;
+    font-size: 1.05rem;
     cursor: pointer;
     transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .btn-confirm-remove:hover {
-    background: #c82333;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .confirm-remove-container {
+        padding: 35px 25px;
+    }
+    
+    .confirm-remove-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .confirm-actions {
+        flex-direction: column;
+    }
+    
+    .btn-cancel,
+    .btn-confirm-remove {
+        width: 100%;
+        justify-content: center;
+    }
 }

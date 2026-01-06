@@ -103,6 +103,109 @@
     font-size: 1.1rem;
 }
 
+/* Status Filter Section */
+.status-filter-section {
+    background: white;
+    padding: 30px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.filter-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.filter-title {
+    color: #667eea;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    background: white;
+    color: #333;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-btn:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.filter-btn.filter-NEW {
+    border-color: #0066cc;
+}
+
+.filter-btn.filter-NEW:hover,
+.filter-btn.filter-NEW.active {
+    background: #0066cc;
+    color: white;
+}
+
+.filter-btn.filter-DELIVERED {
+    border-color: #ff8800;
+}
+
+.filter-btn.filter-DELIVERED:hover,
+.filter-btn.filter-DELIVERED.active {
+    background: #ff8800;
+    color: white;
+}
+
+.filter-btn.filter-IN_PROGRESS {
+    border-color: #00aaff;
+}
+
+.filter-btn.filter-IN_PROGRESS:hover,
+.filter-btn.filter-IN_PROGRESS.active {
+    background: #00aaff;
+    color: white;
+}
+
+.filter-btn.filter-READY {
+    border-color: #28a745;
+}
+
+.filter-btn.filter-READY:hover,
+.filter-btn.filter-READY.active {
+    background: #28a745;
+    color: white;
+}
+
+.filter-btn.filter-CANCELED {
+    border-color: #dc3545;
+}
+
+.filter-btn.filter-CANCELED:hover,
+.filter-btn.filter-CANCELED.active {
+    background: #dc3545;
+    color: white;
+}
+
 /* Admin Orders Grid */
 .admin-orders-grid {
     display: grid;

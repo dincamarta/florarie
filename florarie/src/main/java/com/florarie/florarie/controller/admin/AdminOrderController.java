@@ -40,9 +40,16 @@ public class AdminOrderController {
 
 
     @GetMapping
-    public String list(Model model) {
-        model.addAttribute("orders",
-                orderRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt")));
+    public String list(@RequestParam(required = false) OrderStatus status, Model model) {
+        List<CustomerOrder> orders;
+        if (status != null) {
+            orders = orderRepository.findByStatus(status, Sort.by(Sort.Direction.DESC, "createdAt"));
+        } else {
+            orders = orderRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+        }
+        model.addAttribute("orders", orders);
+        model.addAttribute("selectedStatus", status);
+        model.addAttribute("allStatuses", OrderStatus.values());
         return "admin/orders/list";
     }
 

@@ -30,6 +30,40 @@
         </form>
     </div>
 
+    <!-- Status Filter -->
+    <div class="status-filter-section">
+        <div class="filter-container">
+            <h3 class="filter-title">🔍 Filtrare după status:</h3>
+            <div class="filter-buttons">
+                <a th:href="@{/admin/orders}" 
+                   class="filter-btn"
+                   th:classappend="${selectedStatus == null ? 'active' : ''}">
+                    📋 Toate
+                </a>
+                <a th:each="s : ${allStatuses}" 
+                   th:href="@{/admin/orders(status=${s})}"
+                   class="filter-btn"
+                   th:classappend="${selectedStatus == s ? 'active' : ''}"
+                   th:attrappend="class=${' filter-' + s.name()}">
+                    <span th:switch="${s.name()}">
+                        <span th:case="'NEW'">🆕</span>
+                        <span th:case="'DELIVERED'">👁️</span>
+                        <span th:case="'IN_PROGRESS'">⚙️</span>
+                        <span th:case="'READY'">✓</span>
+                        <span th:case="'CANCELED'">✗</span>
+                    </span>
+                    <span th:switch="${s.name()}">
+                        <span th:case="'NEW'">Noi</span>
+                        <span th:case="'DELIVERED'">Preluate</span>
+                        <span th:case="'IN_PROGRESS'">În lucru</span>
+                        <span th:case="'READY'">Gata</span>
+                        <span th:case="'CANCELED'">Anulate</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Orders Grid -->
     <div class="admin-content">
         <div th:if="${orders.empty}" class="empty-state">

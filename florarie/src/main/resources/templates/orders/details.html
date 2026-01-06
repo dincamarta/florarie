@@ -29,12 +29,12 @@
                 <!-- Status Card -->
                 <div class="info-card">
                     <h2>📊 Status Comandă</h2>
-                    <div class="status-display" th:switch="${order.status}">
+                    <div class="status-display" th:switch="${order.status.name()}">
                         <span th:case="'NEW'" class="status-badge-large status-new">🆕 Nouă</span>
-                        <span th:case="'PRELUATA'" class="status-badge-large status-preluata">👁️ Preluată</span>
-                        <span th:case="'IN_DESFASURARE'" class="status-badge-large status-in-desfasurare">⚙️ În lucru</span>
-                        <span th:case="'GATA'" class="status-badge-large status-gata">✓ Gata</span>
-                        <span th:case="'ANULATA'" class="status-badge-large status-anulata">✗ Anulată</span>
+                        <span th:case="'DELIVERED'" class="status-badge-large status-preluata">👁️ Preluată</span>
+                        <span th:case="'IN_PROGRESS'" class="status-badge-large status-in-desfasurare">⚙️ În lucru</span>
+                        <span th:case="'READY'" class="status-badge-large status-gata">✓ Gata</span>
+                        <span th:case="'CANCELED'" class="status-badge-large status-anulata">✗ Anulată</span>
                         <span th:case="*" class="status-badge-large">Necunoscut</span>
                     </div>
                 </div>
