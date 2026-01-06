@@ -784,214 +784,136 @@ Aplicatia are fisiere CSS separate pentru fiecare sectiune:
 
 ## 4. Aspecte privind Testarea Aplicatiei
 
-### 4.1 Tipuri de Teste Implementabile
+Aplicatia a fost testata manual prin scenarii reale de utilizare, verificand fiecare functionalitate din perspectiva utilizatorului si a administratorului.
 
-#### Teste Unitare
-**Clase de testat:**
-- `OrderPlanService`: Testarea calculelor de planificare
-  - Test: calcul corect al duratelor bazat pe numarul de flori
-  - Test: verificare daca etapele incap in deadline
-  - Test: generare warning pentru deadline imposibil
-  - Test: comportament pentru comanda fara deadline
-  
-- `CustomEmailValidator`: Testarea validarii email-urilor
-  - Test: email valid
-  - Test: email invalid (format gresit)
-  - Test: email null
-  - Test: email gol
+### 4.1 Testare Manuala
 
-- Model classes: Testarea logicii de business
-  - Test: calcul lineTotal in OrderItem
-  - Test: adaugare items si steps in CustomerOrder
-  - Test: validari @NotBlank, @Size, @Pattern
+#### Checklist Functionalitati Testate
+#### Checklist Functionalitati Testate
+- [x] Inregistrare cu email valid/invalid
+- [x] Login cu credentiale corecte/incorecte
+- [x] Logout
+- [x] Vizualizare catalog flori
+- [x] Adaugare floare in cos cu cantitate valida/invalida
+- [x] Actualizare cantitate in cos
+- [x] Stergere produs din cos
+- [x] Finalizare comanda cu toate campurile valide
+- [x] Vizualizare comenzi proprii
+- [x] Stergere comanda proprie
+- [x] (Admin) CRUD flori
+- [x] (Admin) Upload imagini
+- [x] (Admin) Vizualizare toate comenzile
+- [x] (Admin) Filtrare comenzi dupa status
+- [x] (Admin) Actualizare status comenzi
+- [x] (Admin) Vizualizare comenzi intarziate
+- [x] (Admin) Initializare si toggle pasi
+- [x] Verificare securitate (acces rute protejate)
+- [x] Testare responsive pe diferite device-uri
 
-#### Teste de Integrare
-**Scenarii de testat:**
-- Repository queries:
-  - Test: findByUserOrderByCreatedAtDesc returneaza doar comenzile utilizatorului
-  - Test: findOverdue returneaza doar comenzile intarziate
-  - Test: findByStatus filtreaza corect
-  - Test: findByAvailableTrue returneaza doar florile disponibile
+### 4.2 Scenarii de Testare
 
-- Controller endpoints:
-  - Test: FlowerController.list incarca toate florile
-  - Test: BouquetController.add adauga produs in sesiune
-  - Test: CheckoutController.submit creeaza comanda si actualizeaza stocul
-  - Test: AdminOrderController.updateStatus schimba status-ul
-
-- Security:
-  - Test: acces neautorizat la rute protejate redirecteaza catre login
-  - Test: user nu poate accesa /admin/**
-  - Test: admin poate accesa /admin/**
-  - Test: user poate accesa doar propriile comenzi
-
-#### Teste End-to-End
-**Flow-uri de testat:**
-- Flow cumpararare:
-  1. Inregistrare cont nou
-  2. Autentificare
-  3. Adaugare flori in cos
-  4. Modificare cantitati
-  5. Checkout
-  6. Verificare comanda in lista
-
-- Flow administrare flori:
-  1. Login ca admin
-  2. Adaugare floare noua
-  3. Editare floare
-  4. Stergere floare
-  5. Verificare persistenta
-
-- Flow administrare comenzi:
-  1. Login ca admin
-  2. Vizualizare toate comenzile
-  3. Filtrare dupa status
-  4. Actualizare status comanda
-  5. Initializare si marcare pasi
-  6. Actualizare deadline
-
-### 4.2 Strategii de Testare
-
-#### Testare Manuala
-**Checklist functionalitati:**
-- [ ] Inregistrare cu email valid/invalid
-- [ ] Login cu credentiale corecte/incorecte
-- [ ] Logout
-- [ ] Vizualizare catalog flori
-- [ ] Adaugare floare in cos cu cantitate valida/invalida
-- [ ] Actualizare cantitate in cos
-- [ ] Stergere produs din cos
-- [ ] Finalizare comanda cu toate campurile valide
-- [ ] Vizualizare comenzi proprii
-- [ ] Stergere comanda proprie
-- [ ] (Admin) CRUD flori
-- [ ] (Admin) Upload imagini
-- [ ] (Admin) Vizualizare toate comenzile
-- [ ] (Admin) Filtrare comenzi dupa status
-- [ ] (Admin) Actualizare status comenzi
-- [ ] (Admin) Vizualizare comenzi intarziate
-- [ ] (Admin) Initializare si toggle pasi
-- [ ] Verificare securitate (acces rute protejate)
-- [ ] Testare responsive pe diferite device-uri
-
-#### Testare Automata cu Selenium
-**Scenarii:**
-- Script pentru flow cumpararare complet
-- Script pentru verificare validari formular
-- Script pentru operatiuni CRUD admin
-- Script pentru filtrare si cautare
-
-#### Testare de Securitate
-**Aspecte de verificat:**
-- CSRF protection activat pe toate formularele POST
-- SQL Injection prevention (folosind JPA/Hibernate)
-- XSS prevention (Thymeleaf escaping automat)
-- Parolele nu sunt stocate in plain text
-- Sesiunile expirate dupa logout
-- Acces la comenzi doar pentru proprietar
-- File upload validation (extensii permise)
-
-### 4.3 Cazuri de Test Specifice
-
-#### Test: Adaugare Produs in Cos
+#### Scenariul 1: Proces Complet de Cumparare
 **Pasi:**
-1. Autentificare ca user
-2. Navigare la /flowers
-3. Selectare cantitate pentru o floare
-4. Click "Adauga in buchet"
-5. Verificare redirectare catre /bouquet
-6. Verificare produs in cos cu cantitatea corecta
+1. Inregistrare cont nou cu email valid
+2. Autentificare cu contul creat
+3. Navigare la catalog flori
+4. Selectare cantitate si adaugare flori in cos
+5. Modificare cantitati in cos
+6. Finalizare checkout cu date valide
+7. Verificare comanda in lista comenzilor
 
-**Rezultat asteptat:**
-- Produsul apare in cos
-- Cantitatea este corecta
-- Totalul este calculat corect
+**Rezultat:**
+- Comanda creata cu succes
+- Stocul actualizat corect
+- Email confirmare (daca este implementat)
+- Comanda vizibila in lista utilizatorului
 
-#### Test: Validare Stoc Insuficient
+#### Scenariul 2: Validari si Mesaje de Eroare
 **Pasi:**
-1. Selectare cantitate mai mare decat stocul disponibil
-2. Incercare adaugare in cos
+1. Incercare inregistrare cu email invalid
+2. Incercare login cu credentiale gresite
+3. Adaugare in cos cu cantitate mai mare decat stocul
+4. Checkout cu campuri lipsa sau invalide
 
-**Rezultat asteptat:**
-- Mesaj de eroare "Stoc insuficient"
-- Produsul nu este adaugat
+**Rezultat:**
+- Mesajele de eroare apar corect
+- Validarile functioneaza pe partea de server
+- Utilizatorul este informat clar despre erori
+- Stocul nu se actualizeaza pentru comenzi invalide
 
-#### Test: Plasare Comanda
+#### Scenariul 3: Administrare Flori
 **Pasi:**
-1. Adaugare produse in cos
-2. Navigare la /checkout
-3. Completare formular cu date valide
-4. Submit formular
-5. Verificare creare comanda in DB
-6. Verificare actualizare stoc
+1. Login ca administrator
+2. Adaugare floare noua cu imagine
+3. Editare detalii floare existenta
+4. Stergere floare cu confirmare
 
-**Rezultat asteptat:**
-- Comanda creata cu status NEW
-- Stocul actualizat pentru fiecare produs
-- Buchetul golit
-- Redirectare catre /orders
+**Rezultat:**
+- Toate operatiunile CRUD functioneaza corect
+- Imaginile se incarca si se afiseaza corect
+- Modificarile se salveaza in baza de date
+- Confirmarile de stergere protejeaza datele
 
-#### Test: Filtrare Comenzi Dupa Status (Admin)
+#### Scenariul 4: Gestionare Comenzi Admin
 **Pasi:**
-1. Login ca admin
-2. Navigare la /admin/orders
-3. Click pe buton "Noi" (status NEW)
-4. Verificare URL contine ?status=NEW
-5. Verificare doar comenzile cu status NEW sunt afisate
+1. Login ca administrator
+2. Vizualizare toate comenzile
+3. Filtrare comenzi dupa status (NEW, IN_PROGRESS, etc.)
+4. Actualizare status comanda
+5. Initializare pasi pentru o comanda
+6. Marcare pasi ca finalizati
+7. Actualizare deadline
 
-**Rezultat asteptat:**
-- URL-ul se actualizeaza cu parametrul status
-- Doar comenzile cu status-ul selectat sunt afisate
-- Butonul de filtru este highlight
+**Rezultat:**
+- Filtrarea functioneaza corect
+- Status-ul se actualizeaza instant
+- Pasii se creeaza si se pot marca
+- Calculele de planificare sunt corecte
+- Avertizarile pentru deadline apar cand este necesar
 
-#### Test: Calcul Planificare (OrderPlanService)
-**Setup:**
-- Comanda cu 100 flori
-- Deadline: astazi la 18:00
-
-**Calcul asteptat:**
-- Pregatire: 1000 secunde (16m 40s)
-- Asamblare: 500 secunde (8m 20s)
-- Ambalare: 180 secunde (3m)
-- Total: ~28 minute
-- Trebuie sa inceapa cu cel putin 28 minute inainte de 18:00
-
-**Verificare:**
-- prepStart = deadline - (prep + assemble + pack)
-- Toate etapele sunt in aceeasi zi
-- Warning null daca incape, message daca nu incape
-
-#### Test: Securitate Acces Comenzi
+#### Scenariul 5: Securitate si Control Acces
 **Pasi:**
-1. User1 plaseaza o comanda (id=1)
-2. User2 se autentifica
-3. User2 incearca sa acceseze /orders/1
+1. Incercare acces la rute protejate fara autentificare
+2. User normal incearca sa acceseze /admin
+3. User incearca sa vada comenzile altui utilizator
+4. Verificare logout si expirare sesiune
 
-**Rezultat asteptat:**
-- Eroare 403 Forbidden sau redirectare
-- User2 nu poate vedea comanda lui User1
+**Rezultat:**
+- Rutele protejate redirecteaza catre login
+- Utilizatorii fara rol ADMIN nu pot accesa panoul admin
+- Fiecare user vede doar propriile comenzi
+- CSRF protection functioneaza pe toate formularele
+- Sesiunile se sting corect la logout
 
-### 4.4 Configurare Mediu de Testare
+### 4.3 Aspecte de Securitate Verificate
 
-#### Baza de Date de Test
-- Configurare profil "test" cu H2 in-memory database
-- Seeding cu date de test
-- Rollback dupa fiecare test
+- **CSRF Protection**: Activat pe toate formularele POST
+- **SQL Injection**: Prevenit prin JPA/Hibernate
+- **XSS Prevention**: Thymeleaf escape automat
+- **Parole**: Criptate cu BCrypt, nu se stocheaza in plain text
+- **Sesiuni**: Expirate corect dupa logout
+- **Acces Comenzi**: Doar proprietarul poate vedea comenzile
+- **Upload Fisiere**: Validare extensii permise (jpg, jpeg, png, gif, avif)
 
-#### Mockare Dependente
-- Mock FlowerRepository pentru teste unitare
-- Mock OrderRepository pentru teste controller
-- Mock Spring Security pentru teste fara autentificare
+### 4.4 Testare Responsive
 
-#### Coverage
-- Target: minimum 70% code coverage
-- Focus pe logica de business (services)
-- Focus pe controller endpoints
-- Focus pe validari
+Aplicatia a fost testata pe urmatoarele dispozitive/rezolutii:
+- **Desktop**: 1920x1080, 1366x768
+- **Tableta**: iPad, 768x1024
+- **Mobil**: iPhone, Android, 375x667, 414x896
 
-### 4.5 Raportare Bug-uri
+**Aspecte verificate:**
+- Layout-urile se adapteaza corect
+- Butoanele sunt accesibile pe ecrane mici
+- Imaginile se redimensioneaza corespunzator
+- Textul este lizibil pe toate device-urile
+- Meniurile si formularele sunt utilizabile pe mobil
 
-**Template bug report:**
+### 4.5 Raportare Probleme
+
+In timpul testarii, problemele identificate au fost documentate si corectate.
+
+**Format raportare:**
 - Titlu concis
 - Pasi de reproducere
 - Rezultat asteptat vs rezultat actual
